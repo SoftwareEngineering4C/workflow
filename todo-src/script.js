@@ -13,7 +13,7 @@ myApp.controller('MainCtrl', function ($scope){
       $scope.newItem = "";
     }
   }
-    ////
+    //
   $scope.deleteItem = function(item){
     console.log("in delete");
     var index = $scope.todos.indexOf(item);
