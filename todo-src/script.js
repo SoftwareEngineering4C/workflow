@@ -9,11 +9,16 @@ myApp.controller('MainCtrl', function ($scope){
                 ];
   $scope.newItem = "";
 
+  $scope.totalNumber = 2;
+
+
   $scope.addItem = function(){
     console.log("in add");
     if ($scope.newItem !== ""){
       $scope.todos.push($scope.newItem);
       $scope.newItem = "";
+      $scope.totalNumber ++;
+      document.getElementById('numberOfItems').innerHTML = $scope.totalNumber;
     }
   }
 
@@ -21,7 +26,10 @@ myApp.controller('MainCtrl', function ($scope){
     console.log("in delete");
     var index = $scope.todos.indexOf(item);
     $scope.todos.splice(index, 1);
+    $scope.totalNumber --;
+    document.getElementById('numberOfItems').innerHTML = $scope.totalNumber;
   }
+
 
 // Edit function
 $scope.editItem = function (item) {
@@ -39,6 +47,12 @@ $scope.editItem = function (item) {
    };
 
   //End of Edit functions
+
+=======
+//creates a dynamically updating number of tasks
+  window.onload = function() {
+    document.getElementById('numberOfItems').innerHTML = $scope.totalNumber;
+  };
 
 
 });
