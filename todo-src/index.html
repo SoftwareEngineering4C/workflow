@@ -15,6 +15,16 @@
   <body ng-app="app">
     <h1 class="text-center">My little to do app!</h1>
 
+
+  <body ng-app="app" style="background-color:#ffac75">
+
+    <h1 class="text-center">My little to do app!
+      <h1 class="text-center" id="numberOfItems"></h1>
+    </h1>
+
+
+
+
     <div id="todo" class="col-xs-6 col-xs-offset-3" ng-controller="MainCtrl">
 
         <div class="input-group">
@@ -34,9 +44,16 @@
         <li class="list-group-item clearfix" ng-repeat="do in todos">
 
           <span>{{do}}</span>
+
+
+          
+		  <input id="checkBox" type="checkbox">
+
+
           <button class="btn btn-danger pull-right" type="button" ng-click="deleteItem(do)">
             <span class="glyphicon glyphicon-trash " aria-hidden="true"></span>
           </button>
+
 
           <div id="Priority">
         <form action="" method = "get">
@@ -48,9 +65,21 @@
           </select>
         </form>
       </div>
+
+          <!-- Edit Button added here -->
+          <span ng-hide="do.editing">{{do.name}} <button  class="btn btn-info pull-right" ng-click="editItem(do)">Edit</button></span>
+          <input ng-show="do.editing" ng-model="do.name"  autofocus />
+
+          <button ng-show="do.editing" ng-click="doneEditing(do)">Save</button>
+          <button ng-show="do.editing" ng-click="Cancel(do)">Cancel</button>
+
+
+
         </li>
       </ul>
     </div>
+
+
 
 
 
