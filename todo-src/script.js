@@ -9,6 +9,7 @@ myApp.controller('MainCtrl', function ($scope){
                 ];
   $scope.newItem = "";
 
+
   $scope.totalNumber = 2;
 
 
@@ -31,6 +32,7 @@ myApp.controller('MainCtrl', function ($scope){
   }
 
 
+
 // Edit function
 $scope.editItem = function (item) {
        item.editing = true;
@@ -48,7 +50,7 @@ $scope.editItem = function (item) {
 
   //End of Edit functions
 
-=======
+
 //creates a dynamically updating number of tasks
   window.onload = function() {
     document.getElementById('numberOfItems').innerHTML = $scope.totalNumber;
