@@ -9,6 +9,11 @@ myApp.controller('MainCtrl', function ($scope){
                 ];
   $scope.newItem = "";
 
+
+
+  $scope.totalNumber = 2;
+
+
   $scope.addItem = function(){
     console.log("in add");
     if ($scope.newItem !== ""){
@@ -23,6 +28,7 @@ myApp.controller('MainCtrl', function ($scope){
     $scope.todos.splice(index, 1);
   }
 
+  
 // Edit function
 $scope.editItem = function (item) {
        item.editing = true;
@@ -39,6 +45,12 @@ $scope.editItem = function (item) {
    };
 
   //End of Edit functions
+
+
+//creates a dynamically updating number of tasks
+  window.onload = function() {
+    document.getElementById('numberOfItems').innerHTML = $scope.totalNumber;
+  };
 
 
 });
