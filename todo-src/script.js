@@ -19,12 +19,7 @@ myApp.controller('MainCtrl', function ($scope){
     var index = $scope.todos.indexOf(item);
     $scope.todos.splice(index, 1);
   }
-  function Edit_Btn_Click(elem) {
-    var Driver_Reference = elem.dataset.value;
-
-    alert("Edit button pressed! Artist ID: " + Driver_Reference);
-}
-
+  
 });
 
 /*************************
