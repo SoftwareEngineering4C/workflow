@@ -1,53 +1,56 @@
-<!DOCTYPE html>
-<html>
+// Code goes here
 
-  <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
-  </head>
+var myApp = angular.module('app', []);
 
-  <body ng-app="app">
-    <h1 class="text-center">My little to do app!</h1>
+myApp.controller('MainCtrl', function ($scope){
+  $scope.todos = [
+                  {name: "Learn Angular", editing:false},
+                  {name: "Learn node", editing: false}
+                ];
+  $scope.newItem = "";
 
-    <div id="todo" class="col-xs-6 col-xs-offset-3" ng-controller="MainCtrl">
+  $scope.addItem = function(){
+    console.log("in add");
+    if ($scope.newItem !== ""){
+      $scope.todos.push($scope.newItem);
+      $scope.newItem = "";
+    }
+  }
 
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Item to add to todo list" ng-model="newItem">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button" ng-click="addItem()">
-              Add
-              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            </button>
-          </span>
-        </div><!-- /input-group -->
+  $scope.deleteItem = function(item){
+    console.log("in delete");
+    var index = $scope.todos.indexOf(item);
+    $scope.todos.splice(index, 1);
+  }
 
-      <h2>stuff i gotta do asap</h2>
+// Edit function
+$scope.editItem = function (item) {
+       item.editing = true;
+       item.oldName = item.name;
+   }
 
-      <ul class="list-group">
-        <!-- http://www.w3schools.com/css/css_float.asp -->
-        <li class="list-group-item clearfix" ng-repeat="do in todos">
+   $scope.doneEditing = function (item) {
+       item.editing = false;
+       //dong some background ajax calling for persistence...
+   };
+   $scope.Cancel = function (item) {
+       item.editing = false;
+       item.name = item.oldName;
+   };
 
-
-          <button class="btn btn-danger pull-right" type="button" ng-click="deleteItem(do)">
-            <span class="glyphicon glyphicon-trash " aria-hidden="true"></span>
-          </button>
-
-          <!-- Edit Button added here -->
-          <span ng-hide="do.editing">{{do.name}} <button  class="btn btn-info pull-right" ng-click="editItem(do)">Edit</button></span>
-          <input ng-show="do.editing" ng-model="do.name"  autofocus />
-
-          <button ng-show="do.editing" ng-click="doneEditing(do)">Save</button>
-          <button ng-show="do.editing" ng-click="Cancel(do)">Cancel</button>
+  //End of Edit functions
 
 
+});
 
-        </li>
-      </ul>
-    </div>
-
-  </body>
-
-</html>
+/*************************
+ * Homework (not rly):
+ * - "enter" button functionality instead of clicking button
+ * - edit button functionality
+ * - button to mark item as "complete"
+ * - have a total number of items at the top
+ * - make it prettier
+ * - add a due date
+ * - add reminder (setInterval)
+ *
+ * *********************/
