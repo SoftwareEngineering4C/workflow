@@ -5,7 +5,9 @@ var myApp = angular.module('app', []);
 myApp.controller('MainCtrl', function ($scope){
   $scope.todos = ["Learn Angular", "Learn node"];
   $scope.newItem = "";
+
   $scope.totalNumber = 2;
+
 
   $scope.addItem = function(){
     console.log("in add");
@@ -29,6 +31,7 @@ myApp.controller('MainCtrl', function ($scope){
   window.onload = function() {
     document.getElementById('numberOfItems').innerHTML = $scope.totalNumber;
   };
+
 
 });
 
