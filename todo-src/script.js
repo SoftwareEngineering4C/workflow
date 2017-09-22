@@ -14,7 +14,6 @@ myApp.controller('MainCtrl', function ($scope){
 
   $scope.newItem = "";
 
-=======
   $scope.totalNumber = 2;
 
   $scope.addItem = function(){
