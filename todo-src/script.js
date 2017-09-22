@@ -3,16 +3,24 @@
 var myApp = angular.module('app', []);
 
 myApp.controller('MainCtrl', function ($scope){
-  $scope.todos = ["Learn Angular", "Learn node"];
+  $scope.todos = [
+    { task: "Learn Angular", 
+      value: false 
+    },
+    {
+      task: "Learn node",
+      value: false
+    }];
+
   $scope.newItem = "";
 
+=======
   $scope.totalNumber = 2;
-
 
   $scope.addItem = function(){
     console.log("in add");
     if ($scope.newItem !== ""){
-      $scope.todos.push($scope.newItem);
+      $scope.todos.push({task: $scope.newItem, value: false});
       $scope.newItem = "";
       $scope.totalNumber ++;
       document.getElementById('numberOfItems').innerHTML = $scope.totalNumber;
@@ -26,12 +34,26 @@ myApp.controller('MainCtrl', function ($scope){
     $scope.totalNumber --;
     document.getElementById('numberOfItems').innerHTML = $scope.totalNumber;
   }
+    
+  $scope.deleteAllCompletedItems = function(){
+    for (var i = 0; i < $scope.todos.length; i++)
+    {
+      console.log($scope.todos[i].value);
+
+      if ($scope.todos[i].value == true)
+      {
+        $scope.todos.splice(i, 1);
+      }
+
+    }
+    
+  }
+  
 
 //creates a dynamically updating number of tasks
   window.onload = function() {
     document.getElementById('numberOfItems').innerHTML = $scope.totalNumber;
   };
-
 
 });
 
